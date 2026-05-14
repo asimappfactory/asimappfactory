@@ -1,114 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - AsimAppFacctory</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – AsimAppFactory</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f1117;
+      --paper: #f7f5f0;
+      --accent: #1a6b4a;
+      --accent-light: #e8f4ee;
+      --muted: #6b7280;
+      --border: #e0dcd4;
+      --rule: #c8c0b4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 60px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,.025) 40px,
+        rgba(255,255,255,.025) 41px
+      );
+    }
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .brand-dot {
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: .7; }
+    }
+    .brand-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 6vw, 54px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -.02em;
+    }
+    header h1 em {
+      font-style: italic;
+      color: #7ecba1;
+    }
+    .meta {
+      font-size: 13px;
+      opacity: .5;
+      letter-spacing: .04em;
+    }
+
+    /* ── NAV / TOC ── */
+    .toc-bar {
+      background: var(--accent);
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .toc-bar::-webkit-scrollbar { display: none; }
+    .toc-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+    }
+    .toc-bar a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .toc-bar a:hover {
+      color: #fff;
+      border-bottom-color: rgba(255,255,255,.5);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* intro card */
+    .intro-card {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 24px 28px;
+      margin-bottom: 56px;
+      font-size: 15px;
+      color: #1a3d2e;
+    }
+    .intro-card strong { font-weight: 600; }
+
+    /* sections */
+    section {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(22px, 3.5vw, 28px);
+      letter-spacing: -.01em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--ink);
+    }
+
+    p { margin-bottom: 16px; color: #2d3748; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      color: #2d3748;
+    }
+    li { margin-bottom: 8px; }
+    li::marker { color: var(--accent); }
+
+    /* sub-cards for ad networks */
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .network-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      background: #fff;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .network-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+      transform: translateY(-2px);
+    }
+    .network-card .nw-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .network-card .nw-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .network-card a {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+    }
+
+    /* highlight box */
+    .highlight-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 20px 0;
+    }
+    .highlight-box h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    /* rights list */
+    .rights-list {
+      list-style: none;
+      padding: 0;
+    }
+    .rights-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .rights-list li:last-child { border-bottom: none; }
+    .rights-list .icon {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+    .rights-list .text strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .rights-list .text span { font-size: 13px; color: var(--muted); }
+
+    /* contact card */
+    .contact-card {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 12px;
+      padding: 36px;
+      text-align: center;
+    }
+    .contact-card h2 { color: #fff; margin-bottom: 10px; }
+    .contact-card p { color: rgba(255,255,255,.6); margin-bottom: 20px; }
+    .contact-card a {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: .04em;
+      transition: opacity .2s;
+    }
+    .contact-card a:hover { opacity: .85; }
+
+    /* footer */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      header { padding: 40px 20px 36px; }
+      main { padding: 40px 20px 60px; }
+    }
+  </style>
 </head>
 <body>
 
+<!-- ── HEADER ── -->
 <header>
-  <h1>Privacy Policy</h1>
-  <p>AsimAppFacctory</p>
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">asimappfactory.github.io</span>
+    </div>
+    <h1>Privacy <em>Policy</em></h1>
+    <p class="meta">Effective date: May 14, 2025 &nbsp;·&nbsp; Last updated: May 14, 2026</p>
+  </div>
 </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="privacy-policy.html">Privacy Policy</a>
-  <a href="terms.html">Terms</a>
-  <a href="support.html">Support</a>
+<!-- ── STICKY NAV ── -->
+<nav class="toc-bar" aria-label="Jump to section">
+  <div class="toc-inner">
+    <a href="#overview">Overview</a>
+    <a href="#data-collected">Data Collected</a>
+    <a href="#advertising">Advertising</a>
+    <a href="#third-parties">Third Parties</a>
+    <a href="#children">Children</a>
+    <a href="#your-rights">Your Rights</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
+<!-- ── MAIN CONTENT ── -->
 <main>
-  <section>
-    <h2>Introduction</h2>
-    <p>
-      AsimAppFacctory ("we", "our", or "us") values your privacy.
-      This Privacy Policy explains how our applications collect, use,
-      and protect your information.
-    </p>
+
+  <div class="intro-card">
+    <strong>Plain-language summary:</strong> We respect your privacy. Our apps may show ads through Google AdMob and AppLovin, which collect certain data to deliver relevant advertising. We do not sell your personal information. You can opt out of personalised ads at any time.
+  </div>
+
+  <!-- 1. Overview -->
+  <section id="overview">
+    <div class="section-label">01 — Introduction</div>
+    <h2>Overview</h2>
+    <p>Welcome to <strong>AsimAppFactory</strong> ("we", "us", or "our"). This Privacy Policy explains how we collect, use, disclose, and safeguard information when you use our mobile applications and visit our website at <strong>asimappfactory.github.io</strong>.</p>
+    <p>We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this policy or our practices, please contact us using the details at the bottom of this page.</p>
+    <p>By downloading or using any of our apps, you agree to the terms of this Privacy Policy. If you disagree with any terms, please discontinue use of our applications.</p>
+    <p>This policy is designed to comply with:</p>
+    <ul>
+      <li>Google Play Store Developer Programme Policies</li>
+      <li>Google AdMob Advertising Policies</li>
+      <li>AppLovin Network Policies</li>
+      <li>General Data Protection Regulation (GDPR)</li>
+      <li>California Consumer Privacy Act (CCPA)</li>
+      <li>Children's Online Privacy Protection Act (COPPA)</li>
+    </ul>
   </section>
 
-  <section>
+  <!-- 2. Data Collected -->
+  <section id="data-collected">
+    <div class="section-label">02 — Data Collection</div>
     <h2>Information We Collect</h2>
-    <p>Depending on the app, we may collect:</p>
-    <ul style="text-align:left; max-width:700px; margin:auto;">
-      <li>Device information</li>
-      <li>App usage analytics</li>
-      <li>Crash reports</li>
-      <li>Advertising identifiers</li>
-      <li>User-provided information</li>
+    <p>We collect information in the following ways:</p>
+
+    <div class="highlight-box">
+      <h3>Information You Provide</h3>
+      <ul>
+        <li><strong>Contact information</strong> — only if you email us or fill a support form (name, email address).</li>
+        <li><strong>Feedback & correspondence</strong> — messages you send to us.</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <h3>Information Collected Automatically</h3>
+      <ul>
+        <li><strong>Device identifiers</strong> — Advertising ID (GAID/IDFA), device model, OS version.</li>
+        <li><strong>Usage data</strong> — app sessions, features used, crash logs.</li>
+        <li><strong>Network data</strong> — IP address, approximate location (country/city level derived from IP).</li>
+        <li><strong>Ad interaction data</strong> — impressions, clicks, and ad performance metrics collected by our ad partners.</li>
+      </ul>
+    </div>
+
+    <p>We do <strong>not</strong> collect: precise GPS location, biometric data, financial information, health data, contacts, call logs, or any sensitive personal data.</p>
+  </section>
+
+  <!-- 3. How We Use It -->
+  <section id="how-we-use">
+    <div class="section-label">03 — Use of Information</div>
+    <h2>How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+      <li>Operate, maintain, and improve our applications.</li>
+      <li>Serve advertisements through Google AdMob and AppLovin (including personalised ads where consent is given).</li>
+      <li>Analyse app usage and diagnose technical issues via crash reporting tools.</li>
+      <li>Respond to your questions and support requests.</li>
+      <li>Comply with legal obligations and enforce our terms.</li>
+    </ul>
+    <p>We do <strong>not</strong> sell, rent, or trade your personal information to third parties for their marketing purposes.</p>
+  </section>
+
+  <!-- 4. Advertising -->
+  <section id="advertising">
+    <div class="section-label">04 — Advertising Networks</div>
+    <h2>Advertising &amp; Third-Party SDKs</h2>
+    <p>Our apps are free and supported by advertising. We use the following advertising networks, each of which may collect and process data according to their own privacy policies:</p>
+
+    <div class="network-grid">
+      <div class="network-card">
+        <div class="nw-name">Google AdMob</div>
+        <div class="nw-desc">Collects Advertising ID and usage data to serve targeted ads.</div>
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy ↗</a>
+      </div>
+      <div class="network-card">
+        <div class="nw-name">AppLovin / MAX</div>
+        <div class="nw-desc">Collects device and ad interaction data to optimise ad delivery.</div>
+        <a href="https://www.applovin.com/privacy/" target="_blank" rel="noopener">Privacy Policy ↗</a>
+      </div>
+      <div class="network-card">
+        <div class="nw-name">Google Play Services</div>
+        <div class="nw-desc">Provides core platform services and analytics.</div>
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy ↗</a>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h3>Personalised vs Non-Personalised Ads</h3>
+      <p>Where required by law (e.g., in the EEA/UK), we request your consent before serving personalised ads. If you decline or withdraw consent, you will still see ads but they will not be tailored to your interests. You can change your preference at any time in the app settings.</p>
+    </div>
+
+    <p><strong>Opt-out of personalised ads:</strong></p>
+    <ul>
+      <li><strong>Android:</strong> Settings → Google → Ads → "Delete advertising ID" or "Opt out of Ads Personalisation".</li>
+      <li><strong>iOS:</strong> Settings → Privacy → Apple Advertising → Turn off "Personalised Ads".</li>
+      <li><strong>AppLovin opt-out:</strong> <a href="https://www.applovin.com/optout" target="_blank" rel="noopener">applovin.com/optout</a></li>
     </ul>
   </section>
 
-  <section>
-    <h2>Third-Party Services</h2>
-    <p>
-      Our apps may use third-party services including:
-    </p>
-    <ul style="text-align:left; max-width:700px; margin:auto;">
-      <li>Google AdMob</li>
-      <li>Firebase Analytics</li>
-      <li>Firebase Crashlytics</li>
-      <li>AppLovin</li>
+  <!-- 5. Third Parties -->
+  <section id="third-parties">
+    <div class="section-label">05 — Third-Party Services</div>
+    <h2>Third-Party Services &amp; Data Sharing</h2>
+    <p>We may share information with third parties only in these limited circumstances:</p>
+    <ul>
+      <li><strong>Ad networks</strong> — as described in Section 04 above.</li>
+      <li><strong>Analytics providers</strong> — anonymised, aggregated usage statistics to help us understand how our apps are used (e.g., Firebase Analytics).</li>
+      <li><strong>Legal compliance</strong> — when required by law, court order, or government authority.</li>
+      <li><strong>Business transfers</strong> — in the event of a merger, acquisition, or asset sale, your information may be transferred (we will notify you beforehand).</li>
     </ul>
+    <p>All third-party partners are contractually required to handle your data in compliance with applicable privacy laws, including GDPR where applicable.</p>
+
+    <div class="highlight-box">
+      <h3>Data Retention</h3>
+      <p>We retain personal data only as long as necessary to fulfil the purposes in this policy or as required by law. Advertising ID data processed by our ad partners is governed by their respective retention policies.</p>
+    </div>
   </section>
 
-  <section>
-    <h2>How We Use Information</h2>
-    <p>We use data to:</p>
-    <ul style="text-align:left; max-width:700px; margin:auto;">
-      <li>Improve app functionality</li>
-      <li>Monitor performance</li>
-      <li>Provide customer support</li>
-      <li>Serve relevant advertisements</li>
-      <li>Enhance user experience</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Data Security</h2>
-    <p>
-      We implement reasonable security measures to protect your information,
-      but no system is completely secure.
-    </p>
-  </section>
-
-  <section>
+  <!-- 6. Children -->
+  <section id="children">
+    <div class="section-label">06 — Children's Privacy</div>
     <h2>Children's Privacy</h2>
-    <p>
-      Our apps do not knowingly collect personal data from children under 13
-      unless specifically stated.
-    </p>
+    <p>Some of our apps may be designed for a general audience including children under 13. For any app directed at children:</p>
+    <ul>
+      <li>We configure Google AdMob to serve only <strong>non-personalised, family-safe ads</strong> (Google Play Families Policy compliant).</li>
+      <li>We configure AppLovin to serve only <strong>child-directed content</strong> that complies with COPPA.</li>
+      <li>We do <strong>not</strong> knowingly collect personal information from children under 13 beyond what is required to serve appropriate ads.</li>
+      <li>We do not allow interest-based advertising in apps targeted at children.</li>
+    </ul>
+    <p>If you believe we have inadvertently collected personal information from a child under 13 without proper consent, please contact us immediately and we will delete it promptly.</p>
+    <p>For apps rated for ages 13+, we comply with applicable laws regarding minors and do not knowingly collect data from users under 13 in jurisdictions where that is prohibited.</p>
   </section>
 
-  <section>
-    <h2>Your Rights</h2>
-    <p>
-      You may request data deletion or inquire about your information
-      by contacting us.
-    </p>
+  <!-- 7. Security -->
+  <section id="security">
+    <div class="section-label">07 — Security</div>
+    <h2>Security</h2>
+    <p>We implement industry-standard technical and organisational measures to protect your information, including encryption in transit (HTTPS/TLS) and access controls. However, no method of transmission over the internet or electronic storage is 100% secure.</p>
+    <p>In the event of a data breach that affects your rights and freedoms, we will notify you and the appropriate authorities as required by law.</p>
   </section>
 
-  <section>
-    <h2>Contact Us</h2>
-    <p>
-      Email: support@asimappfacctory.com
-    </p>
+  <!-- 8. Your Rights -->
+  <section id="your-rights">
+    <div class="section-label">08 — Your Rights</div>
+    <h2>Your Privacy Rights</h2>
+    <p>Depending on your location, you may have the following rights:</p>
+
+    <ul class="rights-list">
+      <li>
+        <div class="icon">👁</div>
+        <div class="text">
+          <strong>Access</strong>
+          <span>Request a copy of the personal data we hold about you.</span>
+        </div>
+      </li>
+      <li>
+        <div class="icon">✏️</div>
+        <div class="text">
+          <strong>Rectification</strong>
+          <span>Ask us to correct inaccurate or incomplete data.</span>
+        </div>
+      </li>
+      <li>
+        <div class="icon">🗑</div>
+        <div class="text">
+          <strong>Erasure ("Right to be Forgotten")</strong>
+          <span>Request deletion of your personal data where we have no legitimate reason to retain it.</span>
+        </div>
+      </li>
+      <li>
+        <div class="icon">⛔</div>
+        <div class="text">
+          <strong>Object / Restrict Processing</strong>
+          <span>Object to or restrict how we process your data, including opting out of personalised ads.</span>
+        </div>
+      </li>
+      <li>
+        <div class="icon">📦</div>
+        <div class="text">
+          <strong>Data Portability</strong>
+          <span>Receive your data in a structured, commonly used format.</span>
+        </div>
+      </li>
+      <li>
+        <div class="icon">↩️</div>
+        <div class="text">
+          <strong>Withdraw Consent</strong>
+          <span>Withdraw any consent you have previously given without affecting prior lawful processing.</span>
+        </div>
+      </li>
+    </ul>
+
+    <p style="margin-top:20px;">To exercise any of these rights, please contact us at the email below. We will respond within 30 days (or as required by applicable law).</p>
+    <p><strong>California Residents (CCPA):</strong> You have the right to know what personal information is collected, to opt out of the sale of personal information (we do not sell it), and to non-discrimination for exercising your rights.</p>
   </section>
 
-  <section>
-    <h2>Policy Updates</h2>
-    <p>
-      We may update this Privacy Policy periodically.
-      Changes will be reflected on this page.
-    </p>
+  <!-- 9. Changes -->
+  <section id="changes">
+    <div class="section-label">09 — Updates</div>
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by updating the "Last updated" date at the top of this page and, where appropriate, through an in-app notification.</p>
+    <p>We encourage you to review this policy periodically. Your continued use of our apps after any changes constitutes acceptance of the updated policy.</p>
   </section>
+
+  <!-- 10. Contact -->
+  <section id="contact">
+    <div class="contact-card">
+      <h2>Get in Touch</h2>
+      <p>If you have questions, concerns, or wish to exercise your privacy rights, we're here to help.</p>
+      <a href="mailto:privacy@asimappfactory.github.io">Contact Us About Privacy</a>
+      <p style="margin-top:20px; font-size:13px; color:rgba(255,255,255,.4);">
+        AsimAppFactory &nbsp;·&nbsp; asimappfactory.github.io
+      </p>
+    </div>
+  </section>
+
 </main>
 
 <footer>
-  <p>© 2026 AsimAppFacctory. All rights reserved.</p>
+  <p>© 2026 AsimAppFactory · <a href="https://asimappfactory.github.io">asimappfactory.github.io</a> · All rights reserved.</p>
+  <p style="margin-top:6px;">This policy covers Google Play Store compliance, Google AdMob, and AppLovin advertising requirements.</p>
 </footer>
 
 </body>
