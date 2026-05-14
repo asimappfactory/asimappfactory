@@ -50,6 +50,10 @@ header::before {
   max-width: 760px;
   margin: 0 auto;
   position: relative;
+  text-align: center;
+}
+.header-inner .brand {
+  justify-content: center;
 }
 .brand {
   display: inline-flex;
