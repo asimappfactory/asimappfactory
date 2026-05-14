@@ -1,26 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Asim App Factory</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── HOME-SPECIFIC STYLES ── */
+    .hero-tagline {
+      font-size: clamp(14px, 2vw, 16px);
+      color: rgba(255,255,255,.55);
+      font-weight: 300;
+      letter-spacing: .04em;
+      margin-top: 12px;
+      max-width: 420px;
+    }
+
+    .coming-soon-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(26,107,74,.2);
+    }
+    .coming-soon-badge .dot {
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin: 32px 0 56px;
+    }
+    .app-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: box-shadow .25s, transform .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+    .app-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.09); transform: translateY(-3px); }
+    .app-card:hover::before { transform: scaleX(1); }
+    .app-icon {
+      width: 52px; height: 52px;
+      background: var(--accent-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+    .app-name { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 8px; color: var(--ink); }
+    .app-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .app-status {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* About strip */
+    .about-strip {
+      background: var(--ink);
+      border-radius: 14px;
+      padding: 48px 40px;
+      color: var(--paper);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+    .about-strip h2 { font-family: 'DM Serif Display', serif; font-size: clamp(22px, 3.5vw, 32px); color: #fff; line-height: 1.2; }
+    .about-strip h2 em { font-style: italic; color: #7ecba1; }
+    .about-strip p { color: rgba(255,255,255,.6); font-size: 15px; }
+    .stat-row { display: flex; gap: 32px; }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: #7ecba1; }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,.45); letter-spacing: .06em; text-transform: uppercase; }
+
+    @media(max-width: 600px) {
+      .about-strip { grid-template-columns: 1fr; padding: 32px 24px; }
+      .stat-row { justify-content: flex-start; }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- ── HEADER ── -->
   <header>
-    <h1>Asim App Factory</h1>
-    <p>Modern Android apps for productivity and utility.</p>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">asimappfactory.github.io</span>
+      </div>
+      <h1>Asim App <em>Factory</em></h1>
+      <p class="hero-tagline">Modern Android apps for productivity and utility — built with care, shipped with purpose.</p>
+    </div>
   </header>
 
-  <nav>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="terms.html">Terms & Conditions</a>
-    <a href="support.html">Contact</a>
+  <!-- ── STICKY NAV ── -->
+  <nav class="toc-bar" aria-label="Site navigation">
+    <div class="toc-inner">
+      <a href="index.html" class="active">Home</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="support.html">Contact &amp; Support</a>
+    </div>
   </nav>
 
+  <!-- ── MAIN ── -->
   <main>
-    <h2>Our Apps</h2>
-    <p>Coming soon on Google Play Store.</p>
+
+    <div class="coming-soon-badge">
+      <span class="dot"></span>
+      Apps launching on Google Play
+    </div>
+
+    <div class="section-label">Our Apps</div>
+    <h2 class="section-heading">What We're Building</h2>
+    <p class="section-intro">We craft clean, focused Android applications that solve real everyday problems. Every app is designed for simplicity, performance, and privacy.</p>
+
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-icon">⚡</div>
+        <div class="app-name">App One</div>
+        <div class="app-desc">A powerful productivity tool designed to help you stay focused and get things done faster.</div>
+        <span class="app-status">Coming Soon</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🛠</div>
+        <div class="app-name">App Two</div>
+        <div class="app-desc">A handy utility that simplifies everyday tasks right from your Android device.</div>
+        <span class="app-status">Coming Soon</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">📱</div>
+        <div class="app-name">More Apps</div>
+        <div class="app-desc">More exciting applications are in development. Follow our Google Play page to stay updated.</div>
+        <span class="app-status">In Development</span>
+      </div>
+    </div>
+
+    <div class="about-strip">
+      <div>
+        <h2>Built for <em>everyday</em> people</h2>
+        <p style="margin-top:16px;">We believe great apps should be simple, fast, and respect your privacy. Every app we ship is free to use and supported by responsible advertising.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Free Apps</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Data Sold</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Updates</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <strong>Privacy &amp; Transparency:</strong> All our apps comply with Google Play policies and use responsible advertising via Google AdMob and AppLovin. Read our <a href="privacy-policy.html">Privacy Policy</a> to learn how your data is handled.
+    </div>
+
   </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>© 2026 AsimAppFactory · <a href="https://asimappfactory.github.io">asimappfactory.github.io</a> · All rights reserved.</p>
+    <p style="margin-top:6px;">
+      <a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="terms.html">Terms &amp; Conditions</a> &nbsp;·&nbsp;
+      <a href="support.html">Contact</a>
+    </p>
+  </footer>
+
 </body>
 </html>
